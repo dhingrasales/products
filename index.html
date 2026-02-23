@@ -23,6 +23,12 @@
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
+  html {
+    -webkit-text-size-adjust: 100%;
+    -moz-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+  }
+
   body {
     background: var(--cream);
     color: var(--text-dark);
@@ -500,7 +506,7 @@ const lakadSizes = [
 ];
 
 const plyQty   = new Array(plySizes.length).fill(0);
-const lakadQty = new Array(lakadSizes.length).fill(0);
+const lakadQty = [8, 4, 4, 4, 2, 2, 6, 2, 2, 2, 2, 4, 2, 8, 6, 6, 10, 8];
 
 // Build PLY rows with group headers
 (function buildPly() {
@@ -534,12 +540,13 @@ const lakadQty = new Array(lakadSizes.length).fill(0);
   lakadSizes.forEach((s, i) => {
     const row = document.createElement('div');
     row.className = 'size-row';
+    const q = lakadQty[i];
     row.innerHTML = `
       <span class="size-num">${i+1}</span>
       <div class="size-info"><div class="size-label">${s}</div></div>
       <div class="qty-control">
         <button type="button" class="qty-btn" onclick="changeQty('lakad',${i},-1)">−</button>
-        <span class="qty-val" id="lakad-qty-${i}">0</span>
+        <span class="qty-val ${q>0?'active':''}" id="lakad-qty-${i}">${q}</span>
         <button type="button" class="qty-btn" onclick="changeQty('lakad',${i},1)">+</button>
       </div>`;
     container.appendChild(row);
