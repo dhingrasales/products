@@ -20,155 +20,68 @@
     --white: #FFFDF9;
     --green: #25D366;
   }
-
   * { margin: 0; padding: 0; box-sizing: border-box; }
-
-  html {
-    -webkit-text-size-adjust: 100%;
-    -moz-text-size-adjust: 100%;
-    text-size-adjust: 100%;
-  }
-
-  body {
-    background: var(--cream);
-    color: var(--text-dark);
-    font-family: 'Lato', sans-serif;
-    overflow-x: hidden;
-  }
-
+  html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+  body { background: var(--cream); color: var(--text-dark); font-family: 'Lato', sans-serif; overflow-x: hidden; }
   body::before {
-    content: '';
-    position: fixed; inset: 0;
+    content: ''; position: fixed; inset: 0;
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
     pointer-events: none; z-index: 9999; opacity: 0.4;
   }
-
-  /* ── HERO ── */
   .hero {
-    background: var(--wood-dark);
-    min-height: 70vh;
-    display: flex; flex-direction: column;
-    justify-content: center; align-items: center;
-    text-align: center; padding: 60px 20px;
-    position: relative; overflow: hidden;
+    background: var(--wood-dark); min-height: 70vh;
+    display: flex; flex-direction: column; justify-content: center; align-items: center;
+    text-align: center; padding: 60px 20px; position: relative; overflow: hidden;
   }
   .hero::before {
     content: ''; position: absolute; inset: 0;
-    background:
-      radial-gradient(ellipse at 20% 50%, rgba(107,58,31,.6) 0%, transparent 60%),
-      radial-gradient(ellipse at 80% 20%, rgba(160,82,45,.3) 0%, transparent 50%);
+    background: radial-gradient(ellipse at 20% 50%, rgba(107,58,31,.6) 0%, transparent 60%),
+                radial-gradient(ellipse at 80% 20%, rgba(160,82,45,.3) 0%, transparent 50%);
   }
   .wood-grain-bg {
     position: absolute; inset: 0;
     background: repeating-linear-gradient(170deg, transparent, transparent 8px, rgba(255,255,255,.015) 8px, rgba(255,255,255,.015) 9px);
   }
   .hero-content { position: relative; z-index: 2; }
-
   .logo-mark {
-    width: 90px; height: 90px; margin: 0 auto 28px;
-    background: var(--gold); border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
+    width: 90px; height: 90px; margin: 0 auto 28px; background: var(--gold);
+    border-radius: 50%; display: flex; align-items: center; justify-content: center;
     font-size: 38px; animation: pulse 3s ease-in-out infinite;
   }
   @keyframes pulse {
     0%,100% { box-shadow: 0 0 0 4px rgba(200,151,58,.3), 0 0 0 10px rgba(200,151,58,.1); }
     50%      { box-shadow: 0 0 0 6px rgba(200,151,58,.4), 0 0 0 16px rgba(200,151,58,.15); }
   }
-  .hero h1 {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(2.8rem,7vw,5rem); font-weight: 900;
-    color: var(--cream); letter-spacing: 2px; line-height: 1.1;
-  }
+  .hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(2.8rem,7vw,5rem); font-weight: 900; color: var(--cream); letter-spacing: 2px; line-height: 1.1; }
   .hero h1 span { color: var(--gold); }
-  .tagline {
-    font-size: clamp(1rem,2.5vw,1.3rem);
-    color: var(--wood-light); margin: 16px 0 0;
-    font-weight: 300; letter-spacing: 1px;
-  }
+  .tagline { font-size: clamp(1rem,2.5vw,1.3rem); color: var(--wood-light); margin: 16px 0 0; font-weight: 300; letter-spacing: 1px; }
 
-  /* ── CONTACT BAR ── */
-  .contact-bar {
-    background: var(--gold); padding: 14px 20px;
-    display: flex; justify-content: center; align-items: center;
-    gap: 24px; flex-wrap: wrap;
-  }
-  .contact-bar a {
-    color: var(--wood-dark); text-decoration: none;
-    font-weight: 700; font-size: 0.95rem;
-    display: flex; align-items: center; gap: 8px;
-    transition: opacity .2s;
-  }
+  .contact-bar { background: var(--gold); padding: 14px 20px; display: flex; justify-content: center; align-items: center; gap: 24px; flex-wrap: wrap; }
+  .contact-bar a { color: var(--wood-dark); text-decoration: none; font-weight: 700; font-size: 0.95rem; display: flex; align-items: center; gap: 8px; transition: opacity .2s; }
   .contact-bar a:hover { opacity: .75; }
 
-  /* ── ORDER SECTION ── */
   .order-section { background: var(--cream-dark); padding: 60px 20px 80px; }
-
-  .section-label {
-    text-align: center; color: var(--gold);
-    font-size: .75rem; letter-spacing: 4px;
-    text-transform: uppercase; margin-bottom: 12px; font-weight: 700;
-  }
-  .section-title {
-    font-family: 'Playfair Display', serif; text-align: center;
-    font-size: clamp(1.8rem,4vw,2.8rem); color: var(--wood-dark);
-    margin-bottom: 14px; font-weight: 700;
-  }
+  .section-label { text-align: center; color: var(--gold); font-size: .75rem; letter-spacing: 4px; text-transform: uppercase; margin-bottom: 12px; font-weight: 700; }
+  .section-title { font-family: 'Playfair Display', serif; text-align: center; font-size: clamp(1.8rem,4vw,2.8rem); color: var(--wood-dark); margin-bottom: 14px; font-weight: 700; }
   .divider { width: 60px; height: 2px; background: var(--gold); margin: 0 auto 40px; }
 
-  /* ── PRODUCT TOGGLE BUTTONS ── */
-  .product-toggle {
-    display: flex; gap: 16px; justify-content: center;
-    margin-bottom: 40px; flex-wrap: wrap;
-  }
-
-  .toggle-btn {
-    flex: 1; max-width: 260px; min-width: 140px;
-    padding: 22px 20px; border-radius: 6px; border: 2.5px solid transparent;
-    cursor: pointer; text-align: center; transition: all .25s;
-    background: var(--white); position: relative; overflow: hidden;
-  }
+  .product-toggle { display: flex; gap: 16px; justify-content: center; margin-bottom: 40px; flex-wrap: wrap; }
+  .toggle-btn { flex: 1; max-width: 260px; min-width: 140px; padding: 22px 20px; border-radius: 6px; border: 2.5px solid transparent; cursor: pointer; text-align: center; transition: all .25s; background: var(--white); position: relative; overflow: hidden; }
   .toggle-btn .btn-icon { font-size: 2.2rem; margin-bottom: 8px; display: block; }
-  .toggle-btn .btn-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.4rem; font-weight: 700; display: block;
-    color: var(--wood-dark);
-  }
-  .toggle-btn .btn-sub {
-    font-size: .8rem; color: var(--wood-warm);
-    margin-top: 4px; display: block;
-  }
+  .toggle-btn .btn-title { font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: 700; display: block; color: var(--wood-dark); }
+  .toggle-btn .btn-sub { font-size: .8rem; color: var(--wood-warm); margin-top: 4px; display: block; }
   .toggle-btn:hover { border-color: var(--gold); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(44,26,14,.1); }
-  .toggle-btn.active {
-    border-color: var(--gold); background: var(--wood-dark);
-    transform: translateY(-2px); box-shadow: 0 8px 24px rgba(44,26,14,.2);
-  }
+  .toggle-btn.active { border-color: var(--gold); background: var(--wood-dark); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(44,26,14,.2); }
   .toggle-btn.active .btn-title { color: var(--gold); }
   .toggle-btn.active .btn-sub { color: var(--wood-light); }
-  .toggle-btn.active::after {
-    content: '✓';
-    position: absolute; top: 10px; right: 12px;
-    color: var(--gold); font-size: 1rem; font-weight: 900;
-  }
+  .toggle-btn.active::after { content: '✓'; position: absolute; top: 10px; right: 12px; color: var(--gold); font-size: 1rem; font-weight: 900; }
 
-  /* ── FORMS ── */
   .form-panel { display: none; animation: fadeIn .3s ease; }
   .form-panel.active { display: block; }
-
   @keyframes fadeIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
 
-  .form-wrapper {
-    max-width: 700px; margin: 0 auto; background: var(--white);
-    border-radius: 4px; padding: 44px 45px;
-    border: 1px solid rgba(107,58,31,.15);
-    box-shadow: 0 20px 60px rgba(44,26,14,.08);
-  }
-
-  .form-note {
-    color: var(--wood-warm); font-size: .9rem; margin-bottom: 30px;
-    padding: 14px 20px; background: rgba(200,151,58,.08);
-    border-left: 3px solid var(--gold);
-  }
-
+  .form-wrapper { max-width: 700px; margin: 0 auto; background: var(--white); border-radius: 4px; padding: 44px 45px; border: 1px solid rgba(107,58,31,.15); box-shadow: 0 20px 60px rgba(44,26,14,.08); }
+  .form-note { color: var(--wood-warm); font-size: .9rem; margin-bottom: 30px; padding: 14px 20px; background: rgba(200,151,58,.08); border-left: 3px solid var(--gold); }
   .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
 
   @media (max-width: 560px) {
@@ -178,133 +91,60 @@
   }
 
   .form-group { margin-bottom: 22px; }
-  .form-group label {
-    display: block; font-size: .78rem; letter-spacing: 2px;
-    text-transform: uppercase; color: var(--wood-mid);
-    margin-bottom: 8px; font-weight: 700;
-  }
-  .form-group input,
-  .form-group select,
-  .form-group textarea {
-    width: 100%; padding: 13px 16px;
-    border: 1.5px solid var(--cream-dark); border-radius: 3px;
-    background: var(--cream); color: var(--text-dark);
-    font-family: 'Lato', sans-serif; font-size: .95rem;
-    transition: border-color .2s, box-shadow .2s; outline: none;
-  }
-  .form-group input:focus,
-  .form-group select:focus,
-  .form-group textarea:focus {
-    border-color: var(--gold);
-    box-shadow: 0 0 0 3px rgba(200,151,58,.12);
-    background: var(--white);
-  }
+  .form-group label { display: block; font-size: .78rem; letter-spacing: 2px; text-transform: uppercase; color: var(--wood-mid); margin-bottom: 8px; font-weight: 700; }
+  .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 13px 16px; border: 1.5px solid var(--cream-dark); border-radius: 3px; background: var(--cream); color: var(--text-dark); font-family: 'Lato', sans-serif; font-size: .95rem; transition: border-color .2s, box-shadow .2s; outline: none; }
+  .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--gold); box-shadow: 0 0 0 3px rgba(200,151,58,.12); background: var(--white); }
   .form-group textarea { resize: vertical; min-height: 90px; }
 
-  /* ── SIZE SELECTOR ── */
-  .size-selector {
-    border: 1.5px solid var(--cream-dark);
-    border-radius: 3px; overflow: hidden; background: var(--cream);
-  }
-
-  .size-group-header {
-    background: var(--wood-dark); color: var(--gold);
-    padding: 10px 16px; font-size: .8rem; letter-spacing: 2px;
-    text-transform: uppercase; font-weight: 700;
-  }
-
-  .size-row {
-    display: flex; align-items: center;
-    justify-content: space-between;
-    padding: 11px 16px; border-bottom: 1px solid var(--cream-dark);
-    gap: 12px; transition: background .15s;
-  }
+  .size-selector { border: 1.5px solid var(--cream-dark); border-radius: 3px; overflow: hidden; background: var(--cream); }
+  .size-group-header { background: var(--wood-dark); color: var(--gold); padding: 10px 16px; font-size: .85rem; letter-spacing: 3px; text-transform: uppercase; font-weight: 700; }
+  .size-row { display: flex; align-items: center; justify-content: space-between; padding: 11px 16px; border-bottom: 1px solid var(--cream-dark); gap: 12px; transition: background .15s; }
   .size-row:last-child { border-bottom: none; }
   .size-row:hover { background: rgba(237,224,204,.8); }
 
   .size-num { font-size: .72rem; color: var(--wood-warm); font-weight: 700; min-width: 22px; }
-  .size-info { flex: 1; }
-  .size-label { font-size: .93rem; font-weight: 700; color: var(--wood-dark); font-family: monospace; }
+  .size-info { flex: 1; display: flex; align-items: center; gap: 8px; }
+  .size-label { font-size: .93rem; font-weight: 700; color: var(--wood-dark); font-family: monospace; white-space: nowrap; }
+  .cross-symbol { color: var(--wood-warm); font-weight: 600; font-size: .85rem; }
 
-  .qty-control {
-    display: flex; align-items: center;
+  /* Width dropdown inside ply rows */
+  .width-select {
+    padding: 5px 8px;
     border: 1.5px solid var(--cream-dark); border-radius: 3px;
-    overflow: hidden; background: var(--white); flex-shrink: 0;
+    background: var(--white); color: var(--text-dark);
+    font-family: monospace; font-size: .88rem; font-weight: 700;
+    outline: none; cursor: pointer; transition: border-color .2s;
   }
-  .qty-btn {
-    width: 36px; height: 36px; background: none; border: none;
-    font-size: 1.3rem; font-weight: 700; color: var(--wood-warm);
-    cursor: pointer; display: flex; align-items: center; justify-content: center;
-    transition: background .15s, color .15s;
-    user-select: none; -webkit-tap-highlight-color: transparent;
-  }
+  .width-select:focus { border-color: var(--gold); }
+
+  .qty-control { display: flex; align-items: center; border: 1.5px solid var(--cream-dark); border-radius: 3px; overflow: hidden; background: var(--white); flex-shrink: 0; }
+  .qty-btn { width: 36px; height: 36px; background: none; border: none; font-size: 1.3rem; font-weight: 700; color: var(--wood-warm); cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background .15s, color .15s; user-select: none; -webkit-tap-highlight-color: transparent; }
   .qty-btn:hover { background: var(--gold); color: white; }
   .qty-btn:active { background: var(--wood-warm); color: white; }
-  .qty-val {
-    min-width: 38px; text-align: center; font-size: .95rem; font-weight: 700;
-    color: var(--text-dark);
-    border-left: 1px solid var(--cream-dark); border-right: 1px solid var(--cream-dark);
-    line-height: 36px; transition: background .2s, color .2s;
-  }
+  .qty-val { min-width: 38px; text-align: center; font-size: .95rem; font-weight: 700; color: var(--text-dark); border-left: 1px solid var(--cream-dark); border-right: 1px solid var(--cream-dark); line-height: 36px; transition: background .2s, color .2s; }
   .qty-val.active { color: var(--wood-mid); background: rgba(200,151,58,.15); }
 
-  .order-summary {
-    margin-top: 10px; padding: 10px 16px;
-    background: rgba(200,151,58,.08); border-radius: 3px;
-    font-size: .82rem; color: var(--wood-mid); display: none;
-  }
+  .order-summary { margin-top: 10px; padding: 10px 16px; background: rgba(200,151,58,.08); border-radius: 3px; font-size: .82rem; color: var(--wood-mid); display: none; }
   .order-summary.visible { display: block; }
 
-  /* ── SUBMIT ── */
-  .submit-btn {
-    width: 100%; padding: 18px; background: var(--green);
-    color: white; border: none; border-radius: 3px;
-    font-size: 1rem; font-weight: 700; cursor: pointer;
-    display: flex; align-items: center; justify-content: center;
-    gap: 10px; letter-spacing: 1px;
-    transition: background .2s, transform .1s; margin-top: 10px;
-  }
+  .submit-btn { width: 100%; padding: 18px; background: var(--green); color: white; border: none; border-radius: 3px; font-size: 1rem; font-weight: 700; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px; letter-spacing: 1px; transition: background .2s, transform .1s; margin-top: 10px; }
   .submit-btn:hover { background: #20b858; transform: translateY(-1px); }
   .submit-btn:active { transform: translateY(0); }
   .whatsapp-icon { width: 22px; height: 22px; fill: white; }
 
-  .receipt-btn {
-    width: 100%; padding: 15px;
-    background: var(--white); color: var(--wood-dark);
-    border: 2px solid var(--wood-dark); border-radius: 3px;
-    font-size: 1rem; font-weight: 700; cursor: pointer;
-    display: flex; align-items: center; justify-content: center;
-    gap: 10px; letter-spacing: 1px;
-    transition: background .2s, color .2s; margin-top: 10px;
-  }
-  .receipt-btn:hover { background: var(--wood-dark); color: var(--cream); }
-
-  /* ── MAP ── */
   .map-section { background: var(--wood-dark); padding: 80px 20px; }
   .map-section .section-title { color: var(--cream); }
-  .map-wrapper {
-    max-width: 800px; margin: 0 auto; border-radius: 4px; overflow: hidden;
-    border: 3px solid rgba(200,151,58,.3); box-shadow: 0 20px 60px rgba(0,0,0,.4);
-  }
+  .map-wrapper { max-width: 800px; margin: 0 auto; border-radius: 4px; overflow: hidden; border: 3px solid rgba(200,151,58,.3); box-shadow: 0 20px 60px rgba(0,0,0,.4); }
   .map-wrapper iframe { width: 100%; height: 380px; display: block; border: none; filter: sepia(20%) contrast(1.05); }
-  .map-link {
-    display: block; text-align: center; margin-top: 20px;
-    color: var(--gold-light); text-decoration: none;
-    font-size: .9rem; letter-spacing: 1px; transition: color .2s;
-  }
+  .map-link { display: block; text-align: center; margin-top: 20px; color: var(--gold-light); text-decoration: none; font-size: .9rem; letter-spacing: 1px; transition: color .2s; }
   .map-link:hover { color: var(--gold); }
 
-  /* ── FOOTER ── */
-  footer {
-    background: var(--text-dark); color: rgba(255,255,255,.5);
-    text-align: center; padding: 30px 20px; font-size: .82rem;
-  }
+  footer { background: var(--text-dark); color: rgba(255,255,255,.5); text-align: center; padding: 30px 20px; font-size: .82rem; }
   footer span { color: var(--gold); }
 </style>
 </head>
 <body>
 
-<!-- HERO -->
 <section class="hero">
   <div class="wood-grain-bg"></div>
   <div class="hero-content">
@@ -314,20 +154,17 @@
   </div>
 </section>
 
-<!-- CONTACT BAR -->
 <div class="contact-bar">
   <a href="tel:+917986645860">📞 +91 79866 45860</a>
   <a href="https://wa.me/917986645860" target="_blank">💬 WhatsApp ਕਰੋ</a>
   <a href="https://maps.app.goo.gl/pvGv1Ft4kZgQAphU7" target="_blank">📍 ਸਾਡਾ ਪਤਾ ਦੇਖੋ</a>
 </div>
 
-<!-- ORDER SECTION -->
 <section class="order-section">
   <p class="section-label">ਆਰਡਰ ਕਰੋ</p>
   <h2 class="section-title">ਤੁਸੀਂ ਕੀ ਚਾਹੁੰਦੇ ਹੋ?</h2>
   <div class="divider"></div>
 
-  <!-- TWO BIG BUTTONS -->
   <div class="product-toggle">
     <button class="toggle-btn" id="btn-ply" onclick="showForm('ply')">
       <span class="btn-icon">🪵</span>
@@ -344,8 +181,7 @@
   <!-- PLY FORM -->
   <div class="form-panel" id="form-ply">
     <div class="form-wrapper">
-      <div class="form-note">🪵 <strong>Ply — Farash / Truck Flooring</strong><br>ਸਾਈਜ਼ ਚੁਣੋ ਅਤੇ ਮਾਤਰਾ ਦੱਸੋ — ਆਰਡਰ WhatsApp ਤੇ ਜਾਵੇਗਾ।</div>
-
+      <div class="form-note">🪵 <strong>Ply — Farash / Truck Flooring</strong><br>ਲੰਬਾਈ ਦੇਖੋ, ਚੌੜਾਈ ਡ੍ਰੌਪਡਾਊਨ ਤੋਂ ਚੁਣੋ, ਅਤੇ ਮਾਤਰਾ ਦੱਸੋ।</div>
       <div class="form-row">
         <div class="form-group">
           <label>ਤੁਹਾਡਾ ਨਾਮ *</label>
@@ -360,28 +196,20 @@
         <label>ਸ਼ਹਿਰ / ਪਿੰਡ *</label>
         <input type="text" id="ply-location" placeholder="ਜਿਵੇਂ: ਲੁਧਿਆਣਾ, ਪਟਿਆਲਾ...">
       </div>
-
-      <!-- PLY SIZES -->
       <div class="form-group">
         <label>ਸਾਈਜ਼ ਅਤੇ ਮਾਤਰਾ (sheets) *</label>
-        <div class="size-selector" id="plySizeSelector">
-          <div class="size-group-header">25mm — Width 42"</div>
-          <!-- injected by JS -->
-        </div>
+        <div class="size-selector" id="plySizeSelector"></div>
         <div class="order-summary" id="plySummary"></div>
-        <p style="font-size:.75rem;color:var(--wood-warm);margin-top:8px;">💡 ਜਿਸ ਸਾਈਜ਼ ਦੀ ਲੋੜ ਨਹੀਂ ਉਹ 0 ਰਹਿਣ ਦਿਓ</p>
+        <p style="font-size:.75rem;color:var(--wood-warm);margin-top:8px;">📐 ਹਰ ਕਤਾਰ ਤੋਂ ਚੌੜਾਈ ਚੁਣੋ ਜੀ &nbsp;|&nbsp; 💡 ਜਿਸ ਸਾਈਜ਼ ਦੀ ਲੋੜ ਨਹੀਂ ਉਹ 0 ਰਹਿਣ ਦਿਓ</p>
       </div>
-
       <div class="form-group">
         <label>ਕੋਈ ਹੋਰ ਗੱਲ</label>
         <textarea id="ply-msg" placeholder="ਕੋਈ ਵਿਸ਼ੇਸ਼ ਲੋੜ ਜਾਂ ਸਵਾਲ..."></textarea>
       </div>
-
       <button class="submit-btn" onclick="sendOrder('ply')">
         <svg class="whatsapp-icon" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
         WhatsApp ਤੇ ਆਰਡਰ ਭੇਜੋ
       </button>
-
     </div>
   </div>
 
@@ -389,7 +217,6 @@
   <div class="form-panel" id="form-lakad">
     <div class="form-wrapper">
       <div class="form-note">🌳 <strong>Lakad — Truck Body / Cabin Parts</strong><br>ਸਾਈਜ਼ ਚੁਣੋ ਅਤੇ ਮਾਤਰਾ ਦੱਸੋ — ਆਰਡਰ WhatsApp ਤੇ ਜਾਵੇਗਾ।</div>
-
       <div class="form-row">
         <div class="form-group">
           <label>ਤੁਹਾਡਾ ਨਾਮ *</label>
@@ -413,36 +240,30 @@
           <option value="ਕਿੱਕਰ + ਦੇਵਦਾਰ ਦੋਵੇਂ">🌳🌲 ਦੋਵੇਂ</option>
         </select>
       </div>
-
       <div class="form-group">
         <label>ਸਾਈਜ਼ ਅਤੇ ਮਾਤਰਾ (pcs) *</label>
         <div class="size-selector" id="lakadSizeSelector"></div>
         <div class="order-summary" id="lakadSummary"></div>
         <p style="font-size:.75rem;color:var(--wood-warm);margin-top:8px;">💡 ਜਿਸ ਸਾਈਜ਼ ਦੀ ਲੋੜ ਨਹੀਂ ਉਹ 0 ਰਹਿਣ ਦਿਓ</p>
       </div>
-
       <div class="form-group">
         <label>ਕੋਈ ਹੋਰ ਗੱਲ</label>
         <textarea id="lakad-msg" placeholder="ਕੋਈ ਵਿਸ਼ੇਸ਼ ਲੋੜ ਜਾਂ ਸਵਾਲ..."></textarea>
       </div>
-
       <button class="submit-btn" onclick="sendOrder('lakad')">
         <svg class="whatsapp-icon" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
         WhatsApp ਤੇ ਆਰਡਰ ਭੇਜੋ
       </button>
-
     </div>
   </div>
 </section>
 
-<!-- MAP -->
 <section class="map-section">
   <p class="section-label">ਸਾਡਾ ਟਿਕਾਣਾ</p>
   <h2 class="section-title">ਸਾਡੇ ਕੋਲ ਆਓ</h2>
   <div class="divider"></div>
   <div class="map-wrapper">
-    <iframe src="https://maps.google.com/maps?q=30.6942,76.8606&z=15&output=embed"
-      loading="lazy" allowfullscreen referrerpolicy="no-referrer-when-downgrade"></iframe>
+    <iframe src="https://maps.google.com/maps?q=30.6942,76.8606&z=15&output=embed" loading="lazy" allowfullscreen referrerpolicy="no-referrer-when-downgrade"></iframe>
   </div>
   <a href="https://maps.app.goo.gl/pvGv1Ft4kZgQAphU7" target="_blank" class="map-link">🗺️ Google Maps ਤੇ ਖੋਲ੍ਹੋ →</a>
 </section>
@@ -453,59 +274,61 @@
 </footer>
 
 <script>
-// ── PLY SIZES ──
-const plySizes = [
-  // 25mm W42
-  { group:'25mm — Width 42"', label:'25mm × 42" × 90"' },
-  { group:'25mm — Width 42"', label:'25mm × 42" × 96"' },
-  { group:'25mm — Width 42"', label:'25mm × 42" × 100"' },
-  { group:'25mm — Width 42"', label:'25mm × 42" × 104"' },
-  { group:'25mm — Width 42"', label:'25mm × 42" × 108"' },
-  { group:'25mm — Width 42"', label:'25mm × 42" × 114"' },
-  { group:'25mm — Width 42"', label:'25mm × 42" × 120"' },
-  { group:'25mm — Width 42"', label:'25mm × 42" × 126"' },
-  { group:'25mm — Width 42"', label:'25mm × 42" × 129"' },
-  // 25mm W44
-  { group:'25mm — Width 44"', label:'25mm × 44" × 90"' },
-  { group:'25mm — Width 44"', label:'25mm × 44" × 96"' },
-  { group:'25mm — Width 44"', label:'25mm × 44" × 100"' },
-  { group:'25mm — Width 44"', label:'25mm × 44" × 104"' },
-  { group:'25mm — Width 44"', label:'25mm × 44" × 108"' },
-  { group:'25mm — Width 44"', label:'25mm × 44" × 114"' },
-  { group:'25mm — Width 44"', label:'25mm × 44" × 120"' },
-  { group:'25mm — Width 44"', label:'25mm × 44" × 126"' },
-  { group:'25mm — Width 44"', label:'25mm × 44" × 129"' },
-  // 25mm W48
-  { group:'25mm — Width 48"', label:'25mm × 48" × 90"' },
-  { group:'25mm — Width 48"', label:'25mm × 48" × 96"' },
-  { group:'25mm — Width 48"', label:'25mm × 48" × 100"' },
-  { group:'25mm — Width 48"', label:'25mm × 48" × 104"' },
-  { group:'25mm — Width 48"', label:'25mm × 48" × 108"' },
-  { group:'25mm — Width 48"', label:'25mm × 48" × 114"' },
-  { group:'25mm — Width 48"', label:'25mm × 48" × 120"' },
-  { group:'25mm — Width 48"', label:'25mm × 48" × 126"' },
-  { group:'25mm — Width 48"', label:'25mm × 48" × 129"' },
-  // 32mm W45
-  { group:'32mm — Width 45"', label:'32mm × 45" × 96"' },
-  { group:'32mm — Width 45"', label:'32mm × 45" × 100"' },
-  { group:'32mm — Width 45"', label:'32mm × 45" × 104"' },
-  { group:'32mm — Width 45"', label:'32mm × 45" × 108"' },
-  { group:'32mm — Width 45"', label:'32mm × 45" × 114"' },
-  { group:'32mm — Width 45"', label:'32mm × 45" × 120"' },
-  { group:'32mm — Width 45"', label:'32mm × 45" × 126"' },
-  { group:'32mm — Width 45"', label:'32mm × 45" × 129"' },
-  // 32mm W48
-  { group:'32mm — Width 48"', label:'32mm × 48" × 96"' },
-  { group:'32mm — Width 48"', label:'32mm × 48" × 100"' },
-  { group:'32mm — Width 48"', label:'32mm × 48" × 104"' },
-  { group:'32mm — Width 48"', label:'32mm × 48" × 108"' },
-  { group:'32mm — Width 48"', label:'32mm × 48" × 114"' },
-  { group:'32mm — Width 48"', label:'32mm × 48" × 120"' },
-  { group:'32mm — Width 48"', label:'32mm × 48" × 126"' },
-  { group:'32mm — Width 48"', label:'32mm × 48" × 129"' },
+// PLY: two thickness groups, each with lengths and selectable widths
+const plyGroups = [
+  {
+    label: '25 MM',
+    lengths: ['90"', '96"', '100"', '104"', '108"', '114"', '120"', '126"', '129"'],
+    widths:  ['42"', '44"', '48"']
+  },
+  {
+    label: '32 MM',
+    lengths: ['96"', '100"', '104"', '108"', '114"', '120"', '126"', '129"'],
+    widths:  ['45"', '48"']
+  }
 ];
 
-// ── LAKAD SIZES ──
+// Build flat row list for qty tracking
+const plyRows = [];
+plyGroups.forEach(g => {
+  g.lengths.forEach(len => {
+    plyRows.push({ groupLabel: g.label, length: len, widths: g.widths });
+  });
+});
+const plyQty = new Array(plyRows.length).fill(0);
+
+(function buildPly() {
+  const container = document.getElementById('plySizeSelector');
+  container.innerHTML = '';
+  let rowIndex = 0;
+  plyGroups.forEach(g => {
+    const hdr = document.createElement('div');
+    hdr.className = 'size-group-header';
+    hdr.textContent = g.label;
+    container.appendChild(hdr);
+
+    g.lengths.forEach(len => {
+      const i = rowIndex++;
+      const opts = g.widths.map(w => `<option value="${w}">${w}</option>`).join('');
+      const row = document.createElement('div');
+      row.className = 'size-row';
+      row.innerHTML = `
+        <div class="size-info">
+          <span class="size-label">${len}</span>
+          <span class="cross-symbol">×</span>
+          <select class="width-select" id="ply-width-${i}">${opts}</select>
+        </div>
+        <div class="qty-control">
+          <button type="button" class="qty-btn" onclick="changeQty('ply',${i},-1)">−</button>
+          <span class="qty-val" id="ply-qty-${i}">0</span>
+          <button type="button" class="qty-btn" onclick="changeQty('ply',${i},1)">+</button>
+        </div>`;
+      container.appendChild(row);
+    });
+  });
+})();
+
+// LAKAD
 const lakadSizes = [
   "Thammi 5' (P)", "Thammi 4'",
   '2"×2"×4\' (P)', '2"×2"×3.5\' (P)',
@@ -517,37 +340,8 @@ const lakadSizes = [
   '2"×1.5"×2.5\' (R)', '2"×1.5"×2\' (R)',
   'Ghode 15"',
 ];
-
-const plyQty   = new Array(plySizes.length).fill(0);
 const lakadQty = [8, 4, 4, 4, 2, 2, 6, 2, 2, 2, 2, 4, 2, 8, 6, 6, 10, 8];
 
-// Build PLY rows with group headers
-(function buildPly() {
-  const container = document.getElementById('plySizeSelector');
-  container.innerHTML = '';
-  let currentGroup = '';
-  plySizes.forEach((s, i) => {
-    if (s.group !== currentGroup) {
-      currentGroup = s.group;
-      const hdr = document.createElement('div');
-      hdr.className = 'size-group-header';
-      hdr.textContent = currentGroup;
-      container.appendChild(hdr);
-    }
-    const row = document.createElement('div');
-    row.className = 'size-row';
-    row.innerHTML = `
-      <div class="size-info"><div class="size-label">${s.label}</div></div>
-      <div class="qty-control">
-        <button type="button" class="qty-btn" onclick="changeQty('ply',${i},-1)">−</button>
-        <span class="qty-val" id="ply-qty-${i}">0</span>
-        <button type="button" class="qty-btn" onclick="changeQty('ply',${i},1)">+</button>
-      </div>`;
-    container.appendChild(row);
-  });
-})();
-
-// Build LAKAD rows
 (function buildLakad() {
   const container = document.getElementById('lakadSizeSelector');
   lakadSizes.forEach((s, i) => {
@@ -587,9 +381,6 @@ function updateSummary(type) {
     const total = plyQty.reduce((a,b)=>a+b,0);
     const el = document.getElementById('plySummary');
     if (!total) { el.classList.remove('visible'); return; }
-    const items = plySizes.filter((_,i)=>plyQty[i]>0).map((s,idx)=>{
-      const ri = plySizes.indexOf(s); return `${plyQty[ri]} sheets ${s.label}`;
-    });
     el.innerHTML = `🧾 <strong>ਚੁਣੇ:</strong> ${total} sheets ਕੁੱਲ`;
     el.classList.add('visible');
   } else {
@@ -618,17 +409,18 @@ function sendOrder(type) {
     const location = document.getElementById('ply-location').value.trim();
     const msg      = document.getElementById('ply-msg').value.trim();
     if (!name || !phone || !location) { alert('ਕਿਰਪਾ ਕਰਕੇ ਨਾਮ, ਫ਼ੋਨ ਅਤੇ ਸ਼ਹਿਰ ਭਰੋ।'); return; }
-    const items = plySizes.map((s,i)=>plyQty[i]>0?`  • ${plyQty[i]} sheets — ${s.label}`:null).filter(Boolean);
+    const items = plyRows.map((r, i) => {
+      if (plyQty[i] <= 0) return null;
+      const width = document.getElementById('ply-width-' + i).value;
+      return `  • ${plyQty[i]} sheets — ${r.groupLabel} × ${width} × ${r.length}`;
+    }).filter(Boolean);
     if (!items.length) { alert('ਕਿਰਪਾ ਕਰਕੇ ਘੱਟੋ-ਘੱਟ ਇੱਕ ਸਾਈਜ਼ ਚੁਣੋ।'); return; }
     const total = plyQty.reduce((a,b)=>a+b,0);
-    let text = `🪵 *ਨਵਾਂ PLY ਆਰਡਰ — Dhingra Sales*\n`;
-    text += `━━━━━━━━━━━━━━━━\n`;
-    text += `👤 *ਨਾਮ:* ${name}\n📞 *ਫ਼ੋਨ:* ${phone}\n📍 *ਸ਼ਹਿਰ:* ${location}\n`;
-    text += `━━━━━━━━━━━━━━━━\n`;
+    let text = `🪵 *ਨਵਾਂ PLY ਆਰਡਰ — Dhingra Sales*\n━━━━━━━━━━━━━━━━\n`;
+    text += `👤 *ਨਾਮ:* ${name}\n📞 *ਫ਼ੋਨ:* ${phone}\n📍 *ਸ਼ਹਿਰ:* ${location}\n━━━━━━━━━━━━━━━━\n`;
     text += `📦 *Ply ਆਰਡਰ (${total} sheets):*\n${items.join('\n')}\n`;
     if (msg) text += `━━━━━━━━━━━━━━━━\n💬 ${msg}\n`;
     window.open(`https://wa.me/917986645860?text=${encodeURIComponent(text)}`, '_blank');
-    downloadReceipt('ply');
   } else {
     const name     = document.getElementById('lakad-name').value.trim();
     const phone    = document.getElementById('lakad-phone').value.trim();
@@ -639,120 +431,12 @@ function sendOrder(type) {
     const items = lakadSizes.map((s,i)=>lakadQty[i]>0?`  ${i+1}. ${lakadQty[i]} pcs — ${s}`:null).filter(Boolean);
     if (!items.length) { alert('ਕਿਰਪਾ ਕਰਕੇ ਘੱਟੋ-ਘੱਟ ਇੱਕ ਸਾਈਜ਼ ਚੁਣੋ।'); return; }
     const total = lakadQty.reduce((a,b)=>a+b,0);
-    let text = `🌳 *ਨਵਾਂ LAKAD ਆਰਡਰ — Dhingra Sales*\n`;
-    text += `━━━━━━━━━━━━━━━━\n`;
-    text += `👤 *ਨਾਮ:* ${name}\n📞 *ਫ਼ੋਨ:* ${phone}\n📍 *ਸ਼ਹਿਰ:* ${location}\n🌳 *ਕਿਸਮ:* ${wood}\n`;
-    text += `━━━━━━━━━━━━━━━━\n`;
+    let text = `🌳 *ਨਵਾਂ LAKAD ਆਰਡਰ — Dhingra Sales*\n━━━━━━━━━━━━━━━━\n`;
+    text += `👤 *ਨਾਮ:* ${name}\n📞 *ਫ਼ੋਨ:* ${phone}\n📍 *ਸ਼ਹਿਰ:* ${location}\n🌳 *ਕਿਸਮ:* ${wood}\n━━━━━━━━━━━━━━━━\n`;
     text += `📦 *Lakad ਆਰਡਰ (${total} pcs):*\n${items.join('\n')}\n`;
     if (msg) text += `━━━━━━━━━━━━━━━━\n💬 ${msg}\n`;
     window.open(`https://wa.me/917986645860?text=${encodeURIComponent(text)}`, '_blank');
-    downloadReceipt('lakad');
   }
-}
-
-function downloadReceipt(type) {
-  let customerName, customerPhone, customerLocation, woodType = '', orderRows = [], totalPcs = 0;
-  const today = new Date().toLocaleDateString('en-IN', {day:'2-digit', month:'2-digit', year:'numeric'});
-
-  if (type === 'ply') {
-    customerName     = document.getElementById('ply-name').value.trim();
-    customerPhone    = document.getElementById('ply-phone').value.trim();
-    customerLocation = document.getElementById('ply-location').value.trim();
-    let sr = 1;
-    plySizes.forEach((s, i) => {
-      if (plyQty[i] > 0) {
-        orderRows.push({ sr: sr++, qty: plyQty[i], desc: s.label });
-        totalPcs += plyQty[i];
-      }
-    });
-    woodType = 'Ply — Farash / Truck Flooring';
-  } else {
-    customerName     = document.getElementById('lakad-name').value.trim();
-    customerPhone    = document.getElementById('lakad-phone').value.trim();
-    customerLocation = document.getElementById('lakad-location').value.trim();
-    woodType         = document.getElementById('lakad-wood').value + ' — Truck Body / Cabin Parts';
-    let sr = 1;
-    lakadSizes.forEach((s, i) => {
-      if (lakadQty[i] > 0) {
-        orderRows.push({ sr: sr++, qty: lakadQty[i], desc: s });
-        totalPcs += lakadQty[i];
-      }
-    });
-  }
-
-  const rowsHTML = orderRows.map(r => `
-    <tr>
-      <td style="text-align:center;padding:6px 8px;border:1px solid #000;">${r.sr}</td>
-      <td style="text-align:center;padding:6px 8px;border:1px solid #000;">${r.qty}</td>
-      <td style="padding:6px 8px;border:1px solid #000;">${r.desc}</td>
-    </tr>`).join('');
-
-  const receiptHTML = `<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Receipt - Dhingra Sales</title>
-<style>
-  * { margin:0; padding:0; box-sizing:border-box; }
-  body { font-family: Arial, sans-serif; background:#fff; color:#000; padding:30px; }
-  .receipt { max-width:480px; margin:0 auto; border:2px solid #000; padding:0; }
-  .header { text-align:center; padding:16px 12px 10px; border-bottom:2px solid #000; }
-  .header h1 { font-size:1.3rem; font-weight:900; letter-spacing:1px; text-transform:uppercase; }
-  .header p  { font-size:.9rem; margin-top:3px; }
-  .sub-header { text-align:center; padding:8px 12px; border-bottom:1px solid #000; font-size:.85rem; font-weight:700; text-transform:uppercase; }
-  .meta { padding:8px 12px; border-bottom:1px solid #000; font-size:.8rem; }
-  .meta span { margin-right:16px; }
-  table { width:100%; border-collapse:collapse; }
-  thead tr { background:#f0f0f0; }
-  th { padding:7px 8px; border:1px solid #000; font-size:.82rem; text-align:center; font-weight:700; text-transform:uppercase; }
-  td { font-size:.82rem; }
-  .footer-row td { font-weight:900; background:#f0f0f0; font-size:.85rem; }
-  .print-btn { display:block; margin:20px auto 0; padding:12px 30px; background:#2C1A0E; color:#fff; border:none; border-radius:4px; font-size:1rem; font-weight:700; cursor:pointer; }
-  @media print { .print-btn { display:none; } body { padding:0; } }
-</style>
-</head>
-<body>
-  <div class="receipt">
-    <div class="header">
-      <h1>DHINGRA SALES</h1>
-      <p>Mob - 7986645860</p>
-    </div>
-    <div class="sub-header">${woodType}</div>
-    <div class="meta">
-      <span><strong>Name:</strong> ${customerName}</span>
-      <span><strong>Ph:</strong> ${customerPhone}</span><br style="margin-bottom:4px">
-      <span><strong>Location:</strong> ${customerLocation}</span>
-      <span style="float:right"><strong>Date:</strong> ${today}</span>
-    </div>
-    <table>
-      <thead>
-        <tr>
-          <th style="width:14%">SR. NO.</th>
-          <th style="width:14%">Qty</th>
-          <th>Description of Goods</th>
-        </tr>
-      </thead>
-      <tbody>
-        ${rowsHTML}
-        <tr class="footer-row">
-          <td style="text-align:center;padding:7px 8px;border:1px solid #000;">${orderRows.length} Items</td>
-          <td style="text-align:center;padding:7px 8px;border:1px solid #000;">${totalPcs} pcs</td>
-          <td style="padding:7px 8px;border:1px solid #000;"></td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-  <button class="print-btn" onclick="window.print()">🖨️ Print / Save as PDF</button>
-</body>
-</html>`;
-
-  const blob = new Blob([receiptHTML], { type: 'text/html' });
-  const url  = URL.createObjectURL(blob);
-  const a    = document.createElement('a');
-  a.href     = url;
-  a.download = `Dhingra-Sales-Receipt-${customerName.replace(/\s+/g,'-')}-${today.replace(/\//g,'-')}.html`;
-  a.click();
-  URL.revokeObjectURL(url);
 }
 </script>
 </body>
