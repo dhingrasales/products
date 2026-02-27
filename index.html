@@ -413,9 +413,24 @@ const fattaQty     = new Array(fattaSizes.length).fill(0);
   hdr.textContent = 'FATTA';
   c.appendChild(hdr);
   fattaSizes.forEach((s, i) => {
-    const hasWoodType = i <= 5; // 1.5' to 6' (index 0-5)
+    const hasWoodType = i <= 7; // 1.5' to 6' (index 0-7) — individual ਕਿਸਮ
     const wrapper = document.createElement('div');
     wrapper.style.borderBottom = '1px solid var(--cream-dark)';
+
+    // Insert shared ਕਿਸਮ header before 7' (index 8)
+    if (i === 8) {
+      const sharedHdr = document.createElement('div');
+      sharedHdr.style.cssText = 'background:var(--cream-dark);padding:6px 10px;display:flex;align-items:center;gap:10px;border-bottom:1px solid var(--cream-dark);';
+      sharedHdr.innerHTML = `
+        <span style="font-size:.68rem;color:#5a3010;font-weight:700;white-space:nowrap;">ਕਿਸਮ (7' ਤੋਂ ਉੱਪਰ):</span>
+        <select id="fatta-wood-group2" style="font-size:.75rem;padding:3px 6px;border:1.5px solid #c4a882;border-radius:3px;background:#fff;color:#0F0800;font-weight:700;outline:none;">
+          <option value="">-- ਚੁਣੋ --</option>
+          <option value="Kikar">🌳 Kikar</option>
+          <option value="Dek">🌲 Dek</option>
+        </select>`;
+      c.appendChild(sharedHdr);
+    }
+
     if (hasWoodType) {
       wrapper.innerHTML = `
         <div class="size-row" style="border-bottom:none;padding-bottom:4px;">
@@ -534,7 +549,7 @@ function sendOrder(type) {
     }).filter(Boolean);
     const fattaItems = fattaSizes.map((s,i)=>{
       if (fattaQty[i] <= 0) return null;
-      const wood = i <= 5 ? document.getElementById('fatta-wood-'+i).value : '';
+      const wood = i <= 7 ? document.getElementById('fatta-wood-'+i).value : document.getElementById('fatta-wood-group2').value;
       return `  • ${fattaQty[i]} pcs — ${s}${wood?' ('+wood+')':''}`;
     }).filter(Boolean);
     const hasAnything  = items.length || ceilingItems.length || fattaItems.length;
