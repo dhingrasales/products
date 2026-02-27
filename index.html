@@ -80,56 +80,56 @@
   .form-panel.active { display: block; }
   @keyframes fadeIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
 
-  .form-wrapper { max-width: 700px; margin: 0 auto; background: var(--white); border-radius: 4px; padding: 44px 45px; border: 1px solid rgba(107,58,31,.15); box-shadow: 0 20px 60px rgba(44,26,14,.08); }
-  .form-note { color: var(--wood-warm); font-size: .9rem; margin-bottom: 30px; padding: 14px 20px; background: rgba(200,151,58,.08); border-left: 3px solid var(--gold); }
-  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .form-wrapper { max-width: 700px; margin: 0 auto; background: var(--white); border-radius: 4px; padding: 28px 24px; border: 1px solid rgba(107,58,31,.15); box-shadow: 0 20px 60px rgba(44,26,14,.08); }
+  .form-note { color: var(--wood-warm); font-size: .8rem; margin-bottom: 20px; padding: 10px 14px; background: rgba(200,151,58,.08); border-left: 3px solid var(--gold); }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
 
   @media (max-width: 560px) {
     .form-row { grid-template-columns: 1fr; }
-    .form-wrapper { padding: 32px 18px; }
+    .form-wrapper { padding: 20px 14px; }
     .toggle-btn { max-width: 100%; }
   }
 
-  .form-group { margin-bottom: 22px; }
-  .form-group label { display: block; font-size: .78rem; letter-spacing: 2px; text-transform: uppercase; color: var(--wood-mid); margin-bottom: 8px; font-weight: 700; }
-  .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 13px 16px; border: 1.5px solid var(--cream-dark); border-radius: 3px; background: var(--cream); color: var(--text-dark); font-family: 'Lato', sans-serif; font-size: .95rem; transition: border-color .2s, box-shadow .2s; outline: none; }
+  .form-group { margin-bottom: 14px; }
+  .form-group label { display: block; font-size: .7rem; letter-spacing: 1.5px; text-transform: uppercase; color: var(--wood-mid); margin-bottom: 5px; font-weight: 700; }
+  .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 9px 12px; border: 1.5px solid var(--cream-dark); border-radius: 3px; background: var(--cream); color: var(--text-dark); font-family: 'Lato', sans-serif; font-size: .88rem; transition: border-color .2s, box-shadow .2s; outline: none; }
   .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--gold); box-shadow: 0 0 0 3px rgba(200,151,58,.12); background: var(--white); }
-  .form-group textarea { resize: vertical; min-height: 90px; }
+  .form-group textarea { resize: vertical; min-height: 70px; }
 
   .size-selector { border: 1.5px solid var(--cream-dark); border-radius: 3px; overflow: hidden; background: var(--cream); }
-  .size-group-header { background: var(--wood-dark); color: var(--gold); padding: 10px 16px; font-size: .85rem; letter-spacing: 3px; text-transform: uppercase; font-weight: 700; }
-  .size-row { display: flex; align-items: center; justify-content: space-between; padding: 8px 12px; border-bottom: 1px solid var(--cream-dark); gap: 8px; transition: background .15s; }
+  .size-group-header { background: var(--wood-dark); color: var(--gold); padding: 6px 10px; font-size: .72rem; letter-spacing: 2px; text-transform: uppercase; font-weight: 700; }
+  .size-row { display: flex; align-items: center; justify-content: space-between; padding: 6px 10px; border-bottom: 1px solid var(--cream-dark); gap: 6px; transition: background .15s; }
   .size-row:last-child { border-bottom: none; }
   .size-row:hover { background: rgba(237,224,204,.8); }
 
-  .size-num { font-size: .72rem; color: var(--wood-warm); font-weight: 700; min-width: 22px; }
-  .size-info { flex: 1; display: flex; align-items: center; gap: 8px; }
-  .size-label { font-size: .93rem; font-weight: 700; color: var(--wood-dark); font-family: monospace; white-space: nowrap; }
-  .cross-symbol { color: var(--wood-warm); font-weight: 600; font-size: .85rem; }
+  .size-num { font-size: .65rem; color: var(--wood-warm); font-weight: 700; min-width: 16px; }
+  .size-info { flex: 1; display: flex; align-items: center; gap: 6px; }
+  .size-label { font-size: .78rem; font-weight: 700; color: var(--wood-dark); font-family: monospace; white-space: nowrap; }
+  .cross-symbol { color: var(--wood-warm); font-weight: 600; font-size: .75rem; }
 
   .width-select {
-    padding: 5px 8px;
+    padding: 3px 5px;
     border: 1.5px solid var(--cream-dark); border-radius: 3px;
     background: var(--white); color: var(--text-dark);
-    font-family: monospace; font-size: .88rem; font-weight: 700;
+    font-family: monospace; font-size: .75rem; font-weight: 700;
     outline: none; cursor: pointer; transition: border-color .2s;
   }
   .width-select:focus { border-color: var(--gold); }
 
   .qty-control { display: flex; align-items: center; border: 1.5px solid var(--cream-dark); border-radius: 3px; overflow: hidden; background: var(--white); flex-shrink: 0; }
-  .qty-btn { width: 28px; height: 28px; background: none; border: none; font-size: 1rem; font-weight: 700; color: var(--wood-warm); cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background .15s, color .15s; user-select: none; -webkit-tap-highlight-color: transparent; }
+  .qty-btn { width: 24px; height: 24px; background: none; border: none; font-size: .9rem; font-weight: 700; color: var(--wood-warm); cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background .15s, color .15s; user-select: none; -webkit-tap-highlight-color: transparent; }
   .qty-btn:hover { background: var(--gold); color: white; }
   .qty-btn:active { background: var(--wood-warm); color: white; }
-  .qty-val { min-width: 30px; text-align: center; font-size: .85rem; font-weight: 700; color: var(--text-dark); border-left: 1px solid var(--cream-dark); border-right: 1px solid var(--cream-dark); line-height: 28px; transition: background .2s, color .2s; }
+  .qty-val { min-width: 26px; text-align: center; font-size: .78rem; font-weight: 700; color: var(--text-dark); border-left: 1px solid var(--cream-dark); border-right: 1px solid var(--cream-dark); line-height: 24px; transition: background .2s, color .2s; }
   .qty-val.active { color: var(--wood-mid); background: rgba(200,151,58,.15); }
 
   .order-summary { margin-top: 10px; padding: 10px 16px; background: rgba(200,151,58,.08); border-radius: 3px; font-size: .82rem; color: var(--wood-mid); display: none; }
   .order-summary.visible { display: block; }
 
-  .submit-btn { width: 100%; padding: 18px; background: var(--green); color: white; border: none; border-radius: 3px; font-size: 1rem; font-weight: 700; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px; letter-spacing: 1px; transition: background .2s, transform .1s; margin-top: 10px; }
+  .submit-btn { width: 100%; padding: 13px; background: var(--green); color: white; border: none; border-radius: 3px; font-size: .9rem; font-weight: 700; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; letter-spacing: 1px; transition: background .2s, transform .1s; margin-top: 8px; }
   .submit-btn:hover { background: #20b858; transform: translateY(-1px); }
   .submit-btn:active { transform: translateY(0); }
-  .whatsapp-icon { width: 22px; height: 22px; fill: white; }
+  .whatsapp-icon { width: 18px; height: 18px; fill: white; }
 
   .map-section { background: var(--wood-dark); padding: 80px 20px; }
   .map-section .section-title { color: var(--cream); }
@@ -172,7 +172,7 @@
     </button>
     <button class="toggle-btn" id="btn-lakad" onclick="showForm('lakad')">
       <span class="btn-icon">🌳</span>
-      <span class="btn-title">Lakad</span>
+      <span class="btn-title">Cabin Wood</span>
       <span class="btn-sub">Truck Body / Cabin Parts</span>
     </button>
   </div>
@@ -196,7 +196,7 @@
         <input type="text" id="ply-location" placeholder="ਜਿਵੇਂ: ਲੁਧਿਆਣਾ, ਪਟਿਆਲਾ...">
       </div>
       <div class="form-group">
-        <label>ਸਾਈਜ਼ ਅਤੇ ਮਾਤਰਾ (sheets) *</label>
+        <label>ਸਾਈਜ਼ ਅਤੇ ਮਾਤਰਾ — ਕਿੰਨੇ ਪੀਸ ਚਾਹੀਦੇ ਨੇ? *</label>
         <div class="size-selector" id="plySizeSelector"></div>
         <div class="order-summary" id="plySummary"></div>
         <p style="font-size:.75rem;color:var(--wood-warm);margin-top:8px;">📐 ਹਰ ਕਤਾਰ ਤੋਂ ਚੌੜਾਈ ਚੁਣੋ ਜੀ &nbsp;|&nbsp; 💡 ਜਿਸ ਸਾਈਜ਼ ਦੀ ਲੋੜ ਨਹੀਂ ਉਹ 0 ਰਹਿਣ ਦਿਓ</p>
@@ -215,7 +215,7 @@
   <!-- LAKAD FORM -->
   <div class="form-panel" id="form-lakad">
     <div class="form-wrapper">
-      <div class="form-note">🌳 <strong>Lakad — Truck Body / Cabin Parts</strong><br>ਸਾਈਜ਼ ਚੁਣੋ ਅਤੇ ਮਾਤਰਾ ਦੱਸੋ — ਆਰਡਰ WhatsApp ਤੇ ਜਾਵੇਗਾ।</div>
+      <div class="form-note">🌳 <strong>Cabin Wood — Truck Body / Cabin Parts</strong><br>ਸਾਈਜ਼ ਚੁਣੋ ਅਤੇ ਮਾਤਰਾ ਦੱਸੋ — ਆਰਡਰ WhatsApp ਤੇ ਜਾਵੇਗਾ।</div>
       <div class="form-row">
         <div class="form-group">
           <label>ਤੁਹਾਡਾ ਨਾਮ *</label>
@@ -235,8 +235,6 @@
         <select id="lakad-wood">
           <option value="">-- ਕਿਸਮ ਚੁਣੋ --</option>
           <option value="ਕਿੱਕਰ">🌳 ਕਿੱਕਰ</option>
-          <option value="ਦੇਵਦਾਰ (Deak)">🌲 ਦੇਵਦਾਰ (Deak)</option>
-          <option value="ਕਿੱਕਰ + ਦੇਵਦਾਰ ਦੋਵੇਂ">🌳🌲 ਦੋਵੇਂ</option>
         </select>
       </div>
       <div class="form-group">
