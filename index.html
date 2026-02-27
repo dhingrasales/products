@@ -126,6 +126,14 @@
   .order-summary { margin-top: 10px; padding: 10px 16px; background: rgba(200,151,58,.08); border-radius: 3px; font-size: .82rem; color: var(--wood-mid); display: none; }
   .order-summary.visible { display: block; }
 
+  .section-divider {
+    background: var(--wood-mid); color: #fff;
+    padding: 8px 14px; border-radius: 3px;
+    font-size: .85rem; font-weight: 900;
+    letter-spacing: 2px; text-transform: uppercase;
+    margin: 20px 0 16px; text-align: center;
+  }
+
   .submit-btn { width: 100%; padding: 13px; background: var(--green); color: white; border: none; border-radius: 3px; font-size: .9rem; font-weight: 700; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; letter-spacing: 1px; transition: background .2s, transform .1s; margin-top: 8px; }
   .submit-btn:hover { background: #20b858; transform: translateY(-1px); }
   .submit-btn:active { transform: translateY(0); }
@@ -199,7 +207,7 @@
         <label>ਸਾਈਜ਼ ਅਤੇ ਮਾਤਰਾ — ਕਿੰਨੇ ਪੀਸ ਚਾਹੀਦੇ ਨੇ? *</label>
         <div class="size-selector" id="plySizeSelector"></div>
         <div class="order-summary" id="plySummary"></div>
-        <p style="font-size:.75rem;color:var(--wood-warm);margin-top:8px;"> |&nbsp; 💡 ਜਿਸ ਸਾਈਜ਼ ਦੀ ਲੋੜ ਨਹੀਂ ਉਹ 0 ਰਹਿਣ ਦਿਓ</p>
+        <p style="font-size:.75rem;color:var(--wood-warm);margin-top:8px;">📐 ਹਰ ਕਤਾਰ ਤੋਂ ਚੌੜਾਈ ਚੁਣੋ ਜੀ &nbsp;|&nbsp; 💡 ਜਿਸ ਸਾਈਜ਼ ਦੀ ਲੋੜ ਨਹੀਂ ਉਹ 0 ਰਹਿਣ ਦਿਓ</p>
       </div>
       <div class="form-group">
         <label>ਕੋਈ ਹੋਰ ਗੱਲ</label>
@@ -243,6 +251,29 @@
         <div class="order-summary" id="lakadSummary"></div>
         <p style="font-size:.75rem;color:var(--wood-warm);margin-top:8px;">💡 ਜਿਸ ਸਾਈਜ਼ ਦੀ ਲੋੜ ਨਹੀਂ ਉਹ 0 ਰਹਿਣ ਦਿਓ</p>
       </div>
+
+      <!-- CEILING SECTION -->
+      <div class="section-divider">🏠 Ceiling</div>
+
+      <div class="form-group">
+        <label>Ceiling ਦੀ ਕਿਸਮ</label>
+        <select id="ceiling-wood">
+          <option value="">-- ਕਿਸਮ ਚੁਣੋ --</option>
+          <option value="Kikar">🌳 Kikar</option>
+          <option value="Dek">🌲 Dek</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>Ceiling ਸਾਈਜ਼ — ਕਿੰਨੇ ਪੀਸ?</label>
+        <div class="size-selector" id="ceilingSizeSelector"></div>
+      </div>
+
+      <div class="form-group">
+        <label>Fatta — ਕਿੰਨੇ ਪੀਸ?</label>
+        <div class="size-selector" id="fattaSizeSelector"></div>
+      </div>
+
       <div class="form-group">
         <label>ਕੋਈ ਹੋਰ ਗੱਲ</label>
         <textarea id="lakad-msg" placeholder="ਕੋਈ ਵਿਸ਼ੇਸ਼ ਲੋੜ ਜਾਂ ਸਵਾਲ..."></textarea>
@@ -352,6 +383,48 @@ const lakadQty = [8, 4, 4, 4, 2, 2, 6, 2, 2, 2, 2, 4, 2, 8, 6, 6, 10, 8];
   });
 })();
 
+// CEILING & FATTA
+const ceilingSizes = ["2' × 8'", "2.5' × 8'", "5.5' × 8'", "6' × 8'"];
+const fattaSizes   = ["1.5'", "2'", "2.5'", "3'", "4'", "5'", "5.5'", "6'", "7'", '8\' (8")', '8\' (9")', '8.25\' (8")', '8.25\' (9")', '8.5\' (8")', '8.5\' (9")'];
+const ceilingQty   = new Array(ceilingSizes.length).fill(0);
+const fattaQty     = new Array(fattaSizes.length).fill(0);
+
+(function buildCeiling() {
+  const c = document.getElementById('ceilingSizeSelector');
+  ceilingSizes.forEach((s, i) => {
+    const row = document.createElement('div');
+    row.className = 'size-row';
+    row.innerHTML = `
+      <div class="size-info"><span class="size-label">${s}</span></div>
+      <div class="qty-control">
+        <button type="button" class="qty-btn" onclick="changeQty('ceiling',${i},-1)">−</button>
+        <span class="qty-val" id="ceiling-qty-${i}">0</span>
+        <button type="button" class="qty-btn" onclick="changeQty('ceiling',${i},1)">+</button>
+      </div>`;
+    c.appendChild(row);
+  });
+})();
+
+(function buildFatta() {
+  const c = document.getElementById('fattaSizeSelector');
+  const hdr = document.createElement('div');
+  hdr.className = 'size-group-header';
+  hdr.textContent = 'FATTA';
+  c.appendChild(hdr);
+  fattaSizes.forEach((s, i) => {
+    const row = document.createElement('div');
+    row.className = 'size-row';
+    row.innerHTML = `
+      <div class="size-info"><span class="size-label">${s}</span></div>
+      <div class="qty-control">
+        <button type="button" class="qty-btn" onclick="changeQty('fatta',${i},-1)">−</button>
+        <span class="qty-val" id="fatta-qty-${i}">0</span>
+        <button type="button" class="qty-btn" onclick="changeQty('fatta',${i},1)">+</button>
+      </div>`;
+    c.appendChild(row);
+  });
+})();
+
 function changeQty(type, index, delta) {
   if (type === 'ply') {
     plyQty[index] = Math.max(0, plyQty[index] + delta);
@@ -359,12 +432,22 @@ function changeQty(type, index, delta) {
     el.textContent = plyQty[index];
     el.classList.toggle('active', plyQty[index] > 0);
     updateSummary('ply');
-  } else {
+  } else if (type === 'lakad') {
     lakadQty[index] = Math.max(0, lakadQty[index] + delta);
     const el = document.getElementById('lakad-qty-' + index);
     el.textContent = lakadQty[index];
     el.classList.toggle('active', lakadQty[index] > 0);
     updateSummary('lakad');
+  } else if (type === 'ceiling') {
+    ceilingQty[index] = Math.max(0, ceilingQty[index] + delta);
+    const el = document.getElementById('ceiling-qty-' + index);
+    el.textContent = ceilingQty[index];
+    el.classList.toggle('active', ceilingQty[index] > 0);
+  } else if (type === 'fatta') {
+    fattaQty[index] = Math.max(0, fattaQty[index] + delta);
+    const el = document.getElementById('fatta-qty-' + index);
+    el.textContent = fattaQty[index];
+    el.classList.toggle('active', fattaQty[index] > 0);
   }
 }
 
@@ -420,11 +503,21 @@ function sendOrder(type) {
     const msg      = document.getElementById('lakad-msg').value.trim();
     if (!name || !phone || !location || !wood) { alert('ਕਿਰਪਾ ਕਰਕੇ ਸਾਰੀ ਜ਼ਰੂਰੀ ਜਾਣਕਾਰੀ ਭਰੋ।'); return; }
     const items = lakadSizes.map((s,i)=>lakadQty[i]>0?`  ${i+1}. ${lakadQty[i]} pcs — ${s}`:null).filter(Boolean);
-    if (!items.length) { alert('ਕਿਰਪਾ ਕਰਕੇ ਘੱਟੋ-ਘੱਟ ਇੱਕ ਸਾਈਜ਼ ਚੁਣੋ।'); return; }
+    const ceilingWood  = document.getElementById('ceiling-wood').value;
+    const ceilingItems = ceilingSizes.map((s,i)=>ceilingQty[i]>0?`  • ${ceilingQty[i]} pcs — ${s}`:null).filter(Boolean);
+    const fattaItems   = fattaSizes.map((s,i)=>fattaQty[i]>0?`  • ${fattaQty[i]} pcs — ${s}`:null).filter(Boolean);
+    const hasAnything  = items.length || ceilingItems.length || fattaItems.length;
+    if (!hasAnything) { alert('ਕਿਰਪਾ ਕਰਕੇ ਘੱਟੋ-ਘੱਟ ਇੱਕ ਸਾਈਜ਼ ਚੁਣੋ।'); return; }
     const total = lakadQty.reduce((a,b)=>a+b,0);
-    let text = `🌳 *ਨਵਾਂ LAKAD ਆਰਡਰ — Dhingra Sales*\n━━━━━━━━━━━━━━━━\n`;
+    let text = `🌳 *ਨਵਾਂ CABIN WOOD ਆਰਡਰ — Dhingra Sales*\n━━━━━━━━━━━━━━━━\n`;
     text += `👤 *ਨਾਮ:* ${name}\n📞 *ਫ਼ੋਨ:* ${phone}\n📍 *ਸ਼ਹਿਰ:* ${location}\n🌳 *ਕਿਸਮ:* ${wood}\n━━━━━━━━━━━━━━━━\n`;
-    text += `📦 *Lakad ਆਰਡਰ (${total} pcs):*\n${items.join('\n')}\n`;
+    if (items.length) text += `📦 *Cabin Wood (${total} pcs):*\n${items.join('\n')}\n`;
+    if (ceilingItems.length) {
+      text += `━━━━━━━━━━━━━━━━\n🏠 *Ceiling${ceilingWood ? ' (' + ceilingWood + ')' : ''}:*\n${ceilingItems.join('\n')}\n`;
+    }
+    if (fattaItems.length) {
+      text += `━━━━━━━━━━━━━━━━\n🪵 *Fatta:*\n${fattaItems.join('\n')}\n`;
+    }
     if (msg) text += `━━━━━━━━━━━━━━━━\n💬 ${msg}\n`;
     window.open(`https://wa.me/917986645860?text=${encodeURIComponent(text)}`, '_blank');
   }
