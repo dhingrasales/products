@@ -98,7 +98,7 @@
 
   .size-selector { border: 1.5px solid var(--cream-dark); border-radius: 3px; overflow: hidden; background: var(--cream); }
   .size-group-header { background: var(--wood-dark); color: var(--gold); padding: 10px 16px; font-size: .85rem; letter-spacing: 3px; text-transform: uppercase; font-weight: 700; }
-  .size-row { display: flex; align-items: center; justify-content: space-between; padding: 11px 16px; border-bottom: 1px solid var(--cream-dark); gap: 12px; transition: background .15s; }
+  .size-row { display: flex; align-items: center; justify-content: space-between; padding: 8px 12px; border-bottom: 1px solid var(--cream-dark); gap: 8px; transition: background .15s; }
   .size-row:last-child { border-bottom: none; }
   .size-row:hover { background: rgba(237,224,204,.8); }
 
@@ -107,7 +107,6 @@
   .size-label { font-size: .93rem; font-weight: 700; color: var(--wood-dark); font-family: monospace; white-space: nowrap; }
   .cross-symbol { color: var(--wood-warm); font-weight: 600; font-size: .85rem; }
 
-  /* Width dropdown inside ply rows */
   .width-select {
     padding: 5px 8px;
     border: 1.5px solid var(--cream-dark); border-radius: 3px;
@@ -118,10 +117,10 @@
   .width-select:focus { border-color: var(--gold); }
 
   .qty-control { display: flex; align-items: center; border: 1.5px solid var(--cream-dark); border-radius: 3px; overflow: hidden; background: var(--white); flex-shrink: 0; }
-  .qty-btn { width: 36px; height: 36px; background: none; border: none; font-size: 1.3rem; font-weight: 700; color: var(--wood-warm); cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background .15s, color .15s; user-select: none; -webkit-tap-highlight-color: transparent; }
+  .qty-btn { width: 28px; height: 28px; background: none; border: none; font-size: 1rem; font-weight: 700; color: var(--wood-warm); cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background .15s, color .15s; user-select: none; -webkit-tap-highlight-color: transparent; }
   .qty-btn:hover { background: var(--gold); color: white; }
   .qty-btn:active { background: var(--wood-warm); color: white; }
-  .qty-val { min-width: 38px; text-align: center; font-size: .95rem; font-weight: 700; color: var(--text-dark); border-left: 1px solid var(--cream-dark); border-right: 1px solid var(--cream-dark); line-height: 36px; transition: background .2s, color .2s; }
+  .qty-val { min-width: 30px; text-align: center; font-size: .85rem; font-weight: 700; color: var(--text-dark); border-left: 1px solid var(--cream-dark); border-right: 1px solid var(--cream-dark); line-height: 28px; transition: background .2s, color .2s; }
   .qty-val.active { color: var(--wood-mid); background: rgba(200,151,58,.15); }
 
   .order-summary { margin-top: 10px; padding: 10px 16px; background: rgba(200,151,58,.08); border-radius: 3px; font-size: .82rem; color: var(--wood-mid); display: none; }
@@ -155,7 +154,7 @@
 </section>
 
 <div class="contact-bar">
-  <a href="tel:+917986645860">📞 +91 79866 45860</a>
+  <a href="tel:+917986645860">📞 +91 78377 77578</a>
   <a href="https://wa.me/917986645860" target="_blank">💬 WhatsApp ਕਰੋ</a>
   <a href="https://maps.app.goo.gl/pvGv1Ft4kZgQAphU7" target="_blank">📍 ਸਾਡਾ ਪਤਾ ਦੇਖੋ</a>
 </div>
@@ -270,11 +269,10 @@
 
 <footer>
   <p>© 2025 <span>Dhingra Sales</span> · ਸਾਰੇ ਹੱਕ ਰਾਖਵੇਂ</p>
-  <p style="margin-top:8px">📞 +91 79866 45860</p>
+  <p style="margin-top:8px">📞 +91 78377 77578</p>
 </footer>
 
 <script>
-// PLY: two thickness groups, each with lengths and selectable widths
 const plyGroups = [
   {
     label: '25 MM',
@@ -288,11 +286,12 @@ const plyGroups = [
   }
 ];
 
-// Build flat row list for qty tracking
 const plyRows = [];
 plyGroups.forEach(g => {
   g.lengths.forEach(len => {
-    plyRows.push({ groupLabel: g.label, length: len, widths: g.widths });
+    g.widths.forEach(w => {
+      plyRows.push({ groupLabel: g.label, length: len, width: w });
+    });
   });
 });
 const plyQty = new Array(plyRows.length).fill(0);
@@ -300,35 +299,30 @@ const plyQty = new Array(plyRows.length).fill(0);
 (function buildPly() {
   const container = document.getElementById('plySizeSelector');
   container.innerHTML = '';
-  let rowIndex = 0;
-  plyGroups.forEach(g => {
-    const hdr = document.createElement('div');
-    hdr.className = 'size-group-header';
-    hdr.textContent = g.label;
-    container.appendChild(hdr);
-
-    g.lengths.forEach(len => {
-      const i = rowIndex++;
-      const opts = g.widths.map(w => `<option value="${w}">${w}</option>`).join('');
-      const row = document.createElement('div');
-      row.className = 'size-row';
-      row.innerHTML = `
-        <div class="size-info">
-          <span class="size-label">${len}</span>
-          <span class="cross-symbol">×</span>
-          <select class="width-select" id="ply-width-${i}">${opts}</select>
-        </div>
-        <div class="qty-control">
-          <button type="button" class="qty-btn" onclick="changeQty('ply',${i},-1)">−</button>
-          <span class="qty-val" id="ply-qty-${i}">0</span>
-          <button type="button" class="qty-btn" onclick="changeQty('ply',${i},1)">+</button>
-        </div>`;
-      container.appendChild(row);
-    });
+  let lastGroup = '';
+  plyRows.forEach((r, i) => {
+    if (r.groupLabel !== lastGroup) {
+      lastGroup = r.groupLabel;
+      const hdr = document.createElement('div');
+      hdr.className = 'size-group-header';
+      hdr.textContent = r.groupLabel;
+      container.appendChild(hdr);
+    }
+    const row = document.createElement('div');
+    row.className = 'size-row';
+    row.innerHTML = `
+      <div class="size-info">
+        <span class="size-label">${r.length} × ${r.width}</span>
+      </div>
+      <div class="qty-control">
+        <button type="button" class="qty-btn" onclick="changeQty('ply',${i},-1)">−</button>
+        <span class="qty-val" id="ply-qty-${i}">0</span>
+        <button type="button" class="qty-btn" onclick="changeQty('ply',${i},1)">+</button>
+      </div>`;
+    container.appendChild(row);
   });
 })();
 
-// LAKAD
 const lakadSizes = [
   "Thammi 5' (P)", "Thammi 4'",
   '2"×2"×4\' (P)', '2"×2"×3.5\' (P)',
@@ -411,8 +405,7 @@ function sendOrder(type) {
     if (!name || !phone || !location) { alert('ਕਿਰਪਾ ਕਰਕੇ ਨਾਮ, ਫ਼ੋਨ ਅਤੇ ਸ਼ਹਿਰ ਭਰੋ।'); return; }
     const items = plyRows.map((r, i) => {
       if (plyQty[i] <= 0) return null;
-      const width = document.getElementById('ply-width-' + i).value;
-      return `  • ${plyQty[i]} sheets — ${r.groupLabel} × ${width} × ${r.length}`;
+      return `  • ${plyQty[i]} sheets — ${r.groupLabel} × ${r.width} × ${r.length}`;
     }).filter(Boolean);
     if (!items.length) { alert('ਕਿਰਪਾ ਕਰਕੇ ਘੱਟੋ-ਘੱਟ ਇੱਕ ਸਾਈਜ਼ ਚੁਣੋ।'); return; }
     const total = plyQty.reduce((a,b)=>a+b,0);
