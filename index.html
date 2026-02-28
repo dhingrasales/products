@@ -488,26 +488,20 @@ const fatteSetQty   = new Array(fatteSetSizes.length).fill(0);
     wrapper.style.borderBottom = '1px solid var(--cream-dark)';
     wrapper.innerHTML = `
       <div class="size-row" style="border-bottom:none;padding-bottom:4px;">
-        <div class="size-info"><span class="size-label">${s}</span></div>
+        <div class="size-info"><span class="size-label">${s}</span><span style="font-size:.7rem;color:#5a3010;font-weight:700;margin:0 4px;">×</span><input type="text" id="fatteSet-inch-${i}" placeholder="inch" style="width:52px;padding:2px 5px;border:1.5px solid var(--cream-dark);border-radius:3px;font-size:.75rem;font-weight:700;color:#0F0800;outline:none;font-family:monospace;"></div>
         <div class="qty-control">
           <button type="button" class="qty-btn" onclick="changeQty('fatteSet',${i},-1)">−</button>
           <span class="qty-val" id="fatteSet-qty-${i}">0</span>
           <button type="button" class="qty-btn" onclick="changeQty('fatteSet',${i},1)">+</button>
         </div>
       </div>
-      <div style="padding:3px 10px 7px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
-        <div style="display:flex;align-items:center;gap:6px;">
-          <span style="font-size:.68rem;color:#5a3010;font-weight:700;">ਕਿਸਮ:</span>
-          <select id="fatteSet-wood-${i}" style="font-size:.75rem;padding:3px 6px;border:1.5px solid var(--cream-dark);border-radius:3px;background:#fff;color:#0F0800;font-weight:700;outline:none;">
-            <option value="">-- ਚੁਣੋ --</option>
-            <option value="Kikar">🌳 Kikar</option>
-            <option value="Dek">🌲 Dek</option>
-          </select>
-        </div>
-        <div style="display:flex;align-items:center;gap:6px;">
-          <span style="font-size:.68rem;color:#5a3010;font-weight:700;">Inch:</span>
-          <input type="text" id="fatteSet-inch-${i}" placeholder='ਜਿਵੇਂ: 3"'" style="width:70px;padding:3px 6px;border:1.5px solid var(--cream-dark);border-radius:3px;font-size:.75rem;font-weight:700;color:#0F0800;outline:none;font-family:monospace;">
-        </div>
+      <div style="padding:3px 10px 7px;display:flex;align-items:center;gap:8px;">
+        <span style="font-size:.68rem;color:#5a3010;font-weight:700;">ਕਿਸਮ:</span>
+        <select id="fatteSet-wood-${i}" style="font-size:.75rem;padding:3px 6px;border:1.5px solid var(--cream-dark);border-radius:3px;background:#fff;color:#0F0800;font-weight:700;outline:none;">
+          <option value="">-- ਚੁਣੋ --</option>
+          <option value="Kikar">🌳 Kikar</option>
+          <option value="Dek">🌲 Dek</option>
+        </select>
       </div>`;
     c.appendChild(wrapper);
   });
@@ -579,7 +573,7 @@ function sendOrder(type) {
     if (!name || !phone || !location) { alert('ਕਿਰਪਾ ਕਰਕੇ ਨਾਮ, ਫ਼ੋਨ ਅਤੇ ਸ਼ਹਿਰ ਭਰੋ।'); return; }
     const items = plyRows.map((r, i) => {
       if (plyQty[i] <= 0) return null;
-      return `  • ${plyQty[i]} sheets — ${r.groupLabel} × ${r.width} × ${r.length}`;
+      return `  • ${plyQty[i]} sheets — ${r.groupLabel} × ${r.length} × ${r.width}`;
     }).filter(Boolean);
     if (!items.length) { alert('ਕਿਰਪਾ ਕਰਕੇ ਘੱਟੋ-ਘੱਟ ਇੱਕ ਸਾਈਜ਼ ਚੁਣੋ।'); return; }
     const total = plyQty.reduce((a,b)=>a+b,0);
@@ -599,7 +593,7 @@ function sendOrder(type) {
     const ceilingItems = ceilingSizes.map((s,i)=>{
       if (ceilingQty[i] <= 0) return null;
       const wood = document.getElementById('ceiling-wood-'+i).value;
-      return `  • ${ceilingQty[i]} pcs — ${s}${wood?' ('+wood+')':''}`;
+      return `  • ${s} × ${ceilingQty[i]}'${wood?' ('+wood+')':''}`;
     }).filter(Boolean);
     const fattaItems = fattaSizes.map((s,i)=>{
       if (fattaQty[i] <= 0) return null;
