@@ -265,6 +265,15 @@
         <div class="size-selector" id="fattaSizeSelector"></div>
       </div>
 
+      <!-- FATTE SET SECTION -->
+      <div class="section-divider">🪵 Fatte Set</div>
+
+      <div class="form-group">
+        <label>Fatte Set — ਕਿੰਨੇ ਸੈੱਟ?</label>
+        <div class="size-selector" id="fatteSetSelector"></div>
+        <p style="font-size:.75rem;color:var(--wood-warm);margin-top:8px;">💡 ਜਿਸ ਸਾਈਜ਼ ਦੀ ਲੋੜ ਨਹੀਂ ਉਹ 0 ਰਹਿਣ ਦਿਓ</p>
+      </div>
+
       <div class="form-group">
         <label>ਕੋਈ ਹੋਰ ਗੱਲ</label>
         <textarea id="lakad-msg" placeholder="ਕੋਈ ਵਿਸ਼ੇਸ਼ ਲੋੜ ਜਾਂ ਸਵਾਲ..."></textarea>
@@ -464,6 +473,46 @@ const fattaQty     = new Array(fattaSizes.length).fill(0);
   });
 })();
 
+// FATTE SET
+const fatteSetSizes = ["1.5'", "2'", "2.5'", "3'", "4'", "5'", "5.5'", "6'"];
+const fatteSetQty   = new Array(fatteSetSizes.length).fill(0);
+
+(function buildFatteSet() {
+  const c = document.getElementById('fatteSetSelector');
+  const hdr = document.createElement('div');
+  hdr.className = 'size-group-header';
+  hdr.textContent = 'FATTE SET';
+  c.appendChild(hdr);
+  fatteSetSizes.forEach((s, i) => {
+    const wrapper = document.createElement('div');
+    wrapper.style.borderBottom = '1px solid var(--cream-dark)';
+    wrapper.innerHTML = `
+      <div class="size-row" style="border-bottom:none;padding-bottom:4px;">
+        <div class="size-info"><span class="size-label">${s}</span></div>
+        <div class="qty-control">
+          <button type="button" class="qty-btn" onclick="changeQty('fatteSet',${i},-1)">−</button>
+          <span class="qty-val" id="fatteSet-qty-${i}">0</span>
+          <button type="button" class="qty-btn" onclick="changeQty('fatteSet',${i},1)">+</button>
+        </div>
+      </div>
+      <div style="padding:3px 10px 7px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
+        <div style="display:flex;align-items:center;gap:6px;">
+          <span style="font-size:.68rem;color:#5a3010;font-weight:700;">ਕਿਸਮ:</span>
+          <select id="fatteSet-wood-${i}" style="font-size:.75rem;padding:3px 6px;border:1.5px solid var(--cream-dark);border-radius:3px;background:#fff;color:#0F0800;font-weight:700;outline:none;">
+            <option value="">-- ਚੁਣੋ --</option>
+            <option value="Kikar">🌳 Kikar</option>
+            <option value="Dek">🌲 Dek</option>
+          </select>
+        </div>
+        <div style="display:flex;align-items:center;gap:6px;">
+          <span style="font-size:.68rem;color:#5a3010;font-weight:700;">Inch:</span>
+          <input type="text" id="fatteSet-inch-${i}" placeholder='ਜਿਵੇਂ: 3"'" style="width:70px;padding:3px 6px;border:1.5px solid var(--cream-dark);border-radius:3px;font-size:.75rem;font-weight:700;color:#0F0800;outline:none;font-family:monospace;">
+        </div>
+      </div>`;
+    c.appendChild(wrapper);
+  });
+})();
+
 function changeQty(type, index, delta) {
   if (type === 'ply') {
     plyQty[index] = Math.max(0, plyQty[index] + delta);
@@ -487,6 +536,11 @@ function changeQty(type, index, delta) {
     const el = document.getElementById('fatta-qty-' + index);
     el.textContent = fattaQty[index];
     el.classList.toggle('active', fattaQty[index] > 0);
+  } else if (type === 'fatteSet') {
+    fatteSetQty[index] = Math.max(0, fatteSetQty[index] + delta);
+    const el = document.getElementById('fatteSet-qty-' + index);
+    el.textContent = fatteSetQty[index];
+    el.classList.toggle('active', fatteSetQty[index] > 0);
   }
 }
 
@@ -552,7 +606,13 @@ function sendOrder(type) {
       const wood = i <= 7 ? document.getElementById('fatta-wood-'+i).value : document.getElementById('fatta-wood-group2').value;
       return `  • ${fattaQty[i]} pcs — ${s}${wood?' ('+wood+')':''}`;
     }).filter(Boolean);
-    const hasAnything  = items.length || ceilingItems.length || fattaItems.length;
+    const fatteSetItems = fatteSetSizes.map((s,i)=>{
+      if (fatteSetQty[i] <= 0) return null;
+      const wood = document.getElementById('fatteSet-wood-'+i).value;
+      const inch = document.getElementById('fatteSet-inch-'+i).value.trim();
+      return `  • ${fatteSetQty[i]} sets — ${s}${wood?' ('+wood+')':''}${inch?' | '+inch:''}`;
+    }).filter(Boolean);
+    const hasAnything  = items.length || ceilingItems.length || fattaItems.length || fatteSetItems.length;
     if (!hasAnything) { alert('ਕਿਰਪਾ ਕਰਕੇ ਘੱਟੋ-ਘੱਟ ਇੱਕ ਸਾਈਜ਼ ਚੁਣੋ।'); return; }
     const total = lakadQty.reduce((a,b)=>a+b,0);
     let text = `🌳 *ਨਵਾਂ CABIN WOOD ਆਰਡਰ — Dhingra Sales*\n━━━━━━━━━━━━━━━━\n`;
@@ -563,6 +623,9 @@ function sendOrder(type) {
     }
     if (fattaItems.length) {
       text += `━━━━━━━━━━━━━━━━\n🪵 *Fatta:*\n${fattaItems.join('\n')}\n`;
+    }
+    if (fatteSetItems.length) {
+      text += `━━━━━━━━━━━━━━━━\n🪵 *Fatte Set:*\n${fatteSetItems.join('\n')}\n`;
     }
     if (msg) text += `━━━━━━━━━━━━━━━━\n💬 ${msg}\n`;
     window.open(`https://wa.me/917986645860?text=${encodeURIComponent(text)}`, '_blank');
